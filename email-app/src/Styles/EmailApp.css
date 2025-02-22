@@ -1,0 +1,133 @@
+/* Email App Container */
+.email-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f9f9f9;
+}
+
+/* Email Header */
+.email-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #1f2937;
+    color: white;
+}
+
+.email-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.email-actions .icon {
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+/* Email Body */
+.email-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.email-sidebar {
+    width: 220px;
+    background: #ffffff;
+    padding: 16px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.compose-btn {
+    width: 100%;
+    padding: 10px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.email-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.email-menu li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.email-menu li.active,
+.email-menu li:hover {
+    background: #e2e8f0;
+}
+
+/* Email List */
+.email-list {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: white;
+}
+
+.email-item {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.email-item:hover {
+    background: #f3f4f6;
+}
+
+.email-item h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.email-item .subject {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.email-item .preview {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.email-item .time {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* Email Content */
+.email-content {
+    flex: 2;
+    padding: 20px;
+    background: white;
+    overflow-y: auto;
+}
+
+.email-content h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.email-content .sender {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+
+
+.email-content .email-body {
+
+    margin-top: 12px;
+    font-size: 14px;
+}
