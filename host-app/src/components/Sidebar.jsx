@@ -1,6 +1,5 @@
 import React from "react";
-import { MessageSquare, Mail } from "lucide-react"; // Icons from Lucide-react
-
+import { MessageSquare, Mail } from "lucide-react";
 export default function Sidebar({ setView }) {
     return (
         <aside className="sidebar">
