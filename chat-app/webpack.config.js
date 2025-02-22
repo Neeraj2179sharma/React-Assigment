@@ -4,12 +4,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: "./src/index",
-    mode: "production", // Changed to production for optimized builds
+    mode: "development",
     output: {
-        path: path.resolve(__dirname, "../build/chat-app"), // Build into a shared root build folder
-        filename: "[name].[contenthash].js",
-        publicPath: "/chat-app/", // Ensures assets are correctly referenced in Netlify
-        clean: true, // Cleans the folder before each build
+        publicPath: "auto", // Fix this to "auto" to avoid loading issues
+    },
+    devServer: {
+        port: 3001,
+        open: false,
+        hot: true,
+        historyApiFallback: true,
     },
     plugins: [
         new ModuleFederationPlugin({
@@ -25,32 +28,22 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: "./public/index.html",
-            filename: path.resolve(__dirname, "../build/chat-app/index.html"), // Ensures the correct placement of index.html
         }),
     ],
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"],
-            },
-            {
-                test: /\.svg$/,
-                use: ["file-loader"],
-            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        presets: ["@babel/preset-env", "@babel/preset-react"], // Add this
                     },
                 },
             },
+            { test: /\.css$/, use: ["style-loader", "css-loader"] },
         ],
     },
-    resolve: {
-        extensions: [".js", ".jsx"],
-    },
+    resolve: { extensions: [".js", ".jsx"] },
 };

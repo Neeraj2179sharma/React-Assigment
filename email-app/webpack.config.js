@@ -4,12 +4,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: "./src/index",
-    mode: "production", // Changed to production for optimized builds
+    mode: "development",
     output: {
-        path: path.resolve(__dirname, "../build/email-app"), // Unified build directory
-        filename: "[name].[contenthash].js",
-        publicPath: "/email-app/", // Ensures correct asset references in Netlify
-        clean: true, // Cleans build before each build
+        publicPath: "auto", // Fix issue with incorrect path
+    },
+    devServer: {
+        port: 3002,
+        open: false,
+        hot: true,
+        historyApiFallback: true,
     },
     plugins: [
         new ModuleFederationPlugin({
@@ -25,7 +28,6 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: "./public/index.html",
-            filename: path.resolve(__dirname, "../build/email-app/index.html"), // Places index.html correctly
         }),
     ],
     module: {
@@ -36,17 +38,12 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        presets: ["@babel/preset-env", "@babel/preset-react"], // Add this
                     },
                 },
             },
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"],
-            },
+            { test: /\.css$/, use: ["style-loader", "css-loader"] },
         ],
     },
-    resolve: {
-        extensions: [".js", ".jsx"],
-    },
+    resolve: { extensions: [".js", ".jsx"] },
 };

@@ -4,16 +4,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: "./src/index",
-    mode: "production",  // Changed to production for building
+    mode: "production",
+    output: {
+        path: path.resolve(__dirname, "../build"),
+        filename: "[name].[contenthash].js",
+        publicPath: "/",
+        clean: true
+    },
     devServer: {
         port: 3000,
-        historyApiFallback: true, // Support React Router
-    },
-    output: {
-        path: path.resolve(__dirname, "../build"), // Output to root-level build folder
-        filename: "[name].[contenthash].js",
-        publicPath: "/", // Ensure correct asset loading
-        clean: true // Clean the output directory before build
+        historyApiFallback: true,
+        open: true,
     },
     plugins: [
         new ModuleFederationPlugin({
@@ -29,7 +30,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: "./public/index.html",
-            filename: path.resolve(__dirname, "../build/index.html"), // Move index.html to build folder
+            filename: path.resolve(__dirname, "../build/index.html"),
         }),
     ],
     module: {
@@ -40,7 +41,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        presets: ["@babel/preset-env", "@babel/preset-react"], // Add this
                     },
                 },
             },
